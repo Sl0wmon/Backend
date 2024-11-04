@@ -1,0 +1,31 @@
+package capstone1.Backend.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class DashboardDto {
+    private String userId;
+    private String id;
+    private double speed;
+    private double rpm;
+    private double coolantTemperature;
+    private double intakeTemperature;
+    private double engineLoad;
+    private double intakePressure;
+    private double mileage;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime drivingTime;
+    private double averageSpeed;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime idleTime;
+    private double instantaneousFuelEfficiency;
+    private double instantaneousConsumption;
+}
