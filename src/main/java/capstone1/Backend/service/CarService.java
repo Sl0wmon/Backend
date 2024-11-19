@@ -48,15 +48,13 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public boolean deleteCar(String carId) {
-        List<Car> car = carRepository.findByCarId(carId);
+    public boolean deleteCar(String userId) {
+        List<Car> car = carRepository.findByUserId(userId);
         if (!car.isEmpty()) {
             for (Car c : car) {
-                if (c.getCarId().equals(carId)) {
-                    carRepository.delete(c);
-                    return true;
-                }
+                carRepository.delete(c);
             }
+            return true;
         }
         return false;
     }

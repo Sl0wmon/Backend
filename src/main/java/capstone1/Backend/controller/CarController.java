@@ -42,6 +42,6 @@ public class CarController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/api/car/delete")
     public Response<?> deleteCar(@RequestBody CarDto carDto) {
-        return new Response<>("true", "차량 정보 삭제 완료", carService.deleteCar(carDto.getCarId()));
+        return new Response<>("true", "차량 정보 삭제 완료", carService.deleteCar(carDto.getUserId()));
     }
 }
