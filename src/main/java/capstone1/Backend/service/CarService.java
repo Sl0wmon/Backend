@@ -58,4 +58,12 @@ public class CarService {
         }
         return false;
     }
+
+    public String getManufacturer(String userId) {
+        List<Car> car = carRepository.findByUserId(userId);
+        if (!car.isEmpty()) {
+            return car.get(0).getManufacturer();
+        }
+        return null;
+    }
 }

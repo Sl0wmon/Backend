@@ -44,4 +44,10 @@ public class CarController {
     public Response<?> deleteCar(@RequestBody CarDto carDto) {
         return new Response<>("true", "차량 정보 삭제 완료", carService.deleteCar(carDto.getUserId()));
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/api/car/getManufacturer")
+    public Response<?> getManufacturer(@RequestBody CarDto carDto) {
+        return new Response<>("true", "제조사 정보 조회 완료", carService.getManufacturer(carDto.getUserId()));
+    }
 }
