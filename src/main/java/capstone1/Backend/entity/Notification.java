@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @Table(name = "Notification")
 public class Notification {
     @Id
+    @Column(name = "notification_id", nullable = false)
+    private String notificationId;
     @Column(name = "user_id", nullable = false)
     private String userId;
     @Column(name = "notificationTime", nullable = false)
