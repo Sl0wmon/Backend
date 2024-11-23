@@ -23,10 +23,10 @@ public class Notification {
     private String userId;
     @Column(name = "notificationTime", nullable = false)
     private LocalDateTime notificationTime;
-    @Column(name = "code", nullable = false)
+    @Column(name = "code")
     private String code;
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
-    @Column(name = "content", nullable = false)
+    @Column(name = "content")
     private String content;
 }

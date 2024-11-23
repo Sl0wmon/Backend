@@ -16,7 +16,8 @@ public class NotificationService {
 
     public void addNotification(NotificationDto notificationDto) {
         Notification notification = new Notification();
-        notification.setUserId("NOTIFICATION" + System.currentTimeMillis());
+        notification.setNotificationId("NOTIFICATION" + System.currentTimeMillis());
+        notification.setUserId(notificationDto.getUserId());
         notification.setNotificationTime(notificationDto.getNotificationTime());
         notification.setCode(notificationDto.getCode());
         notification.setTitle(notificationDto.getTitle());
