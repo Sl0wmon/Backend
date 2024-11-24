@@ -17,7 +17,7 @@ public class ConsumableService {
         Consumable consumable = new Consumable();
         Consumable existingConsumable = consumableRepository.findByCarId(carId);
         if (existingConsumable == null) {
-            throw new IllegalArgumentException("Consumable does not exist");
+            return new Consumable();
         }
         consumable.setMileage(existingConsumable.getMileage());
         consumable.setEngineOilMileage(existingConsumable.getEngineOilMileage());
