@@ -3,6 +3,7 @@ package capstone1.Backend.service;
 import capstone1.Backend.dto.CarDto;
 import capstone1.Backend.entity.Car;
 import capstone1.Backend.repository.CarRepository;
+import capstone1.Backend.repository.ConsumableRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarService {
     private final CarRepository carRepository;
+    private final ConsumableRepository consumableRepository;
 
     public Car addCar(CarDto carDto) {
         Car car = new Car();
@@ -52,6 +54,7 @@ public class CarService {
         List<Car> car = carRepository.findByUserId(userId);
         if (!car.isEmpty()) {
             for (Car c : car) {
+                consumableRepository.deleteById(c.getCarId());
                 carRepository.delete(c);
             }
             return true;
