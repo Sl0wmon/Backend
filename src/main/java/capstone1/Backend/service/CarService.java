@@ -15,7 +15,7 @@ public class CarService {
 
     public Car addCar(CarDto carDto) {
         Car car = new Car();
-        car.setCarId(car.getManufacturer().toUpperCase() + carDto.getYear() + System.currentTimeMillis());
+        car.setCarId(carDto.getManufacturer().toUpperCase() + carDto.getYear() + System.currentTimeMillis());
         car.setUserId(carDto.getUserId());
         car.setManufacturer(carDto.getManufacturer());
         car.setSize(carDto.getSize());
