@@ -13,14 +13,12 @@ import java.time.LocalDate;
 public class ConsumableService {
     private final ConsumableRepository consumableRepository;
 
-    public Consumable addConsumable(AddConsumableDto addConsumableDto) {
-        if (addConsumableDto == null) {
-            throw new IllegalArgumentException("AddConsumableDto cannot be null");
-        }
-
-        Consumable existingConsumable = consumableRepository.findByCarId(addConsumableDto.getCarId());
+    private Consumable getExistingEntity(String carId) {
         Consumable consumable = new Consumable();
-        consumable.setCarId(addConsumableDto.getCarId());
+        Consumable existingConsumable = consumableRepository.findByCarId(carId);
+        if (existingConsumable == null) {
+            throw new IllegalArgumentException("Consumable does not exist");
+        }
         consumable.setMileage(existingConsumable.getMileage());
         consumable.setEngineOilMileage(existingConsumable.getEngineOilMileage());
         consumable.setEngineOilLast(existingConsumable.getEngineOilLast());
@@ -56,14 +54,22 @@ public class ConsumableService {
         consumable.setOuterBeltLast(existingConsumable.getOuterBeltLast());
         consumable.setTimingBeltMileage(existingConsumable.getTimingBeltMileage());
         consumable.setTimingBeltLast(existingConsumable.getTimingBeltLast());
+        return existingConsumable;
+    }
+
+    public Consumable addConsumable(AddConsumableDto addConsumableDto) {
+        if (addConsumableDto == null) {
+            throw new IllegalArgumentException("AddConsumableDto cannot be null");
+        }
 
         String consumableType = addConsumableDto.getConsumableType();
-        System.out.println(consumableType);
 
         if (consumableType == null) {
             throw new IllegalArgumentException("Consumable type cannot be null");
         }
 
+        Consumable consumable = getExistingEntity(addConsumableDto.getCarId());
+        consumable.setCarId(addConsumableDto.getCarId());
         double mileage = addConsumableDto.getMileage();
         LocalDate lastChanged = addConsumableDto.getLastChanged();
         LocalDate today = LocalDate.now();
@@ -419,12 +425,11 @@ public class ConsumableService {
     public Consumable getConsumable(String carId) {
         return consumableRepository.findByCarId(carId);
     }
-    public Consumable updateConsumable(AddConsumableDto addConsumableDto) {
-        Consumable consumable = new Consumable();
-        consumable.setCarId(addConsumableDto.getCarId());
-        String consumableType = addConsumableDto.getConsumableType();
-        double mileage = addConsumableDto.getMileage();
-        LocalDate lastChanged = addConsumableDto.getLastChanged();
+
+    public Consumable resetConsumable(String carId, String consumableType) {
+        Consumable consumable = getExistingEntity(carId);
+        consumable.setCarId(carId);
+        LocalDate lastChanged = LocalDate.now();
 
         switch (consumableType) {
             case "engineOil" -> {
@@ -496,6 +501,29 @@ public class ConsumableService {
                 consumable.setTimingBeltLast(lastChanged);
             }
         }
+        return consumableRepository.save(consumable);
+    }
+
+    public Consumable addMileage(String carId, double mileage) {
+        Consumable consumable = getExistingEntity(carId);
+        consumable.setCarId(carId);
+        consumable.setEngineOilMileage(consumable.getMileage() + mileage);
+        consumable.setMissionOilMileage(consumable.getMileage() + mileage);
+        consumable.setBrakeMileage(consumable.getMileage() + mileage);
+        consumable.setClutchMileage(consumable.getMileage() + mileage);
+        consumable.setSteeringMileage(consumable.getMileage() + mileage);
+        consumable.setCoolantMileage(consumable.getMileage() + mileage);
+        consumable.setFuelFilterMileage(consumable.getMileage() + mileage);
+        consumable.setHeaterFilterMileage(consumable.getMileage() + mileage);
+        consumable.setConditionerFilterMileage(consumable.getMileage() + mileage);
+        consumable.setBrakeLiningMileage(consumable.getMileage() + mileage);
+        consumable.setBrakePadFrontMileage(consumable.getMileage() + mileage);
+        consumable.setBrakePadBackMileage(consumable.getMileage() + mileage);
+        consumable.setWheelAlignmentMileage(consumable.getMileage() + mileage);
+        consumable.setIgnitionPlugMileage(consumable.getMileage() + mileage);
+        consumable.setBatteryMileage(consumable.getMileage() + mileage);
+        consumable.setOuterBeltMileage(consumable.getMileage() + mileage);
+        consumable.setTimingBeltMileage(consumable.getMileage() + mileage);
         return consumableRepository.save(consumable);
     }
 }

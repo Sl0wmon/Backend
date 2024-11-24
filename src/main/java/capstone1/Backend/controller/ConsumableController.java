@@ -31,9 +31,16 @@ public class ConsumableController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/api/consumable/update")
+    @PostMapping("/api/consumable/reset")
     public Response<?> updateConsumable(@RequestBody AddConsumableDto addConsumableDto) {
-        return new Response<>("true", "소모품 업데이트 완료",
-                consumableService.updateConsumable(addConsumableDto));
+        return new Response<>("true", "소모품 초기화 완료",
+                consumableService.resetConsumable(addConsumableDto.getCarId(), addConsumableDto.getConsumableType()));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/api/consumable/addMileage")
+    public Response<?> addMileage(@RequestBody AddConsumableDto addConsumableDto) {
+        return new Response<>("true", "소모품 주행거리 추가 완료",
+                consumableService.addMileage(addConsumableDto.getCarId(), addConsumableDto.getMileage()));
     }
 }
