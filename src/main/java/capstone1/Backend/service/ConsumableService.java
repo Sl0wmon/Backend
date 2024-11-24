@@ -13,13 +13,61 @@ import java.time.LocalDate;
 public class ConsumableService {
     private final ConsumableRepository consumableRepository;
 
-    public Consumable updateConsumable(AddConsumableDto addConsumableDto) {
+    public Consumable addConsumable(AddConsumableDto addConsumableDto) {
+        if (addConsumableDto == null) {
+            throw new IllegalArgumentException("AddConsumableDto cannot be null");
+        }
+
+        Consumable existingConsumable = consumableRepository.findByCarId(addConsumableDto.getCarId());
         Consumable consumable = new Consumable();
         consumable.setCarId(addConsumableDto.getCarId());
+        consumable.setMileage(existingConsumable.getMileage());
+        consumable.setEngineOilMileage(existingConsumable.getEngineOilMileage());
+        consumable.setEngineOilLast(existingConsumable.getEngineOilLast());
+        consumable.setMissionOilMileage(existingConsumable.getMissionOilMileage());
+        consumable.setMissionOilLast(existingConsumable.getMissionOilLast());
+        consumable.setBrakeMileage(existingConsumable.getBrakeMileage());
+        consumable.setBrakeLast(existingConsumable.getBrakeLast());
+        consumable.setClutchMileage(existingConsumable.getClutchMileage());
+        consumable.setClutchLast(existingConsumable.getClutchLast());
+        consumable.setSteeringMileage(existingConsumable.getSteeringMileage());
+        consumable.setSteeringLast(existingConsumable.getSteeringLast());
+        consumable.setCoolantMileage(existingConsumable.getCoolantMileage());
+        consumable.setCoolantLast(existingConsumable.getCoolantLast());
+        consumable.setFuelFilterMileage(existingConsumable.getFuelFilterMileage());
+        consumable.setFuelFilterLast(existingConsumable.getFuelFilterLast());
+        consumable.setHeaterFilterMileage(existingConsumable.getHeaterFilterMileage());
+        consumable.setHeaterFilterLast(existingConsumable.getHeaterFilterLast());
+        consumable.setConditionerFilterMileage(existingConsumable.getConditionerFilterMileage());
+        consumable.setConditionerFilterLast(existingConsumable.getConditionerFilterLast());
+        consumable.setBrakeLiningMileage(existingConsumable.getBrakeLiningMileage());
+        consumable.setBrakeLiningLast(existingConsumable.getBrakeLiningLast());
+        consumable.setBrakePadFrontMileage(existingConsumable.getBrakePadFrontMileage());
+        consumable.setBrakePadFrontLast(existingConsumable.getBrakePadFrontLast());
+        consumable.setBrakePadBackMileage(existingConsumable.getBrakePadBackMileage());
+        consumable.setBrakePadBackLast(existingConsumable.getBrakePadBackLast());
+        consumable.setWheelAlignmentMileage(existingConsumable.getWheelAlignmentMileage());
+        consumable.setWheelAlignmentLast(existingConsumable.getWheelAlignmentLast());
+        consumable.setIgnitionPlugMileage(existingConsumable.getIgnitionPlugMileage());
+        consumable.setIgnitionPlugLast(existingConsumable.getIgnitionPlugLast());
+        consumable.setBatteryMileage(existingConsumable.getBatteryMileage());
+        consumable.setBatteryLast(existingConsumable.getBatteryLast());
+        consumable.setOuterBeltMileage(existingConsumable.getOuterBeltMileage());
+        consumable.setOuterBeltLast(existingConsumable.getOuterBeltLast());
+        consumable.setTimingBeltMileage(existingConsumable.getTimingBeltMileage());
+        consumable.setTimingBeltLast(existingConsumable.getTimingBeltLast());
+
         String consumableType = addConsumableDto.getConsumableType();
+        System.out.println(consumableType);
+
+        if (consumableType == null) {
+            throw new IllegalArgumentException("Consumable type cannot be null");
+        }
+
         double mileage = addConsumableDto.getMileage();
         LocalDate lastChanged = addConsumableDto.getLastChanged();
         LocalDate today = LocalDate.now();
+
 
         switch (consumableType) {
             // 6개월 단위로 입력받을 예정. mileage = 누적 주행거리
@@ -361,11 +409,93 @@ public class ConsumableService {
                     }
                 }
             }
+            default -> {
+                throw new IllegalArgumentException("Invalid consumable type");
+            }
         }
         return consumableRepository.save(consumable);
     }
 
     public Consumable getConsumable(String carId) {
         return consumableRepository.findByCarId(carId);
+    }
+    public Consumable updateConsumable(AddConsumableDto addConsumableDto) {
+        Consumable consumable = new Consumable();
+        consumable.setCarId(addConsumableDto.getCarId());
+        String consumableType = addConsumableDto.getConsumableType();
+        double mileage = addConsumableDto.getMileage();
+        LocalDate lastChanged = addConsumableDto.getLastChanged();
+
+        switch (consumableType) {
+            case "engineOil" -> {
+                consumable.setEngineOilMileage(0);
+                consumable.setEngineOilLast(lastChanged);
+            }
+            case "missionOil" -> {
+                consumable.setMissionOilMileage(0);
+                consumable.setMissionOilLast(lastChanged);
+            }
+            case "brake" -> {
+                consumable.setBrakeMileage(0);
+                consumable.setBrakeLast(lastChanged);
+            }
+            case "clutch" -> {
+                consumable.setClutchMileage(0);
+                consumable.setClutchLast(lastChanged);
+            }
+            case "steering" -> {
+                consumable.setSteeringMileage(0);
+                consumable.setSteeringLast(lastChanged);
+            }
+            case "coolant" -> {
+                consumable.setCoolantMileage(0);
+                consumable.setCoolantLast(lastChanged);
+            }
+            case "fuelFilter" -> {
+                consumable.setFuelFilterMileage(0);
+                consumable.setFuelFilterLast(lastChanged);
+            }
+            case "heaterFilter" -> {
+                consumable.setHeaterFilterMileage(0);
+                consumable.setHeaterFilterLast(lastChanged);
+            }
+            case "conditionerFilter" -> {
+                consumable.setConditionerFilterMileage(0);
+                consumable.setConditionerFilterLast(lastChanged);
+            }
+            case "brakeLining" -> {
+                consumable.setBrakeLiningMileage(0);
+                consumable.setBrakeLiningLast(lastChanged);
+            }
+            case "brakePadFront" -> {
+                consumable.setBrakePadFrontMileage(0);
+                consumable.setBrakePadFrontLast(lastChanged);
+            }
+            case "brakePadBack" -> {
+                consumable.setBrakePadBackMileage(0);
+                consumable.setBrakePadBackLast(lastChanged);
+            }
+            case "wheelAlignment" -> {
+                consumable.setWheelAlignmentMileage(0);
+                consumable.setWheelAlignmentLast(lastChanged);
+            }
+            case "ignitionPlug" -> {
+                consumable.setIgnitionPlugMileage(0);
+                consumable.setIgnitionPlugLast(lastChanged);
+            }
+            case "battery" -> {
+                consumable.setBatteryMileage(0);
+                consumable.setBatteryLast(lastChanged);
+            }
+            case "outerBelt" -> {
+                consumable.setOuterBeltMileage(0);
+                consumable.setOuterBeltLast(lastChanged);
+            }
+            case "timingBelt" -> {
+                consumable.setTimingBeltMileage(0);
+                consumable.setTimingBeltLast(lastChanged);
+            }
+        }
+        return consumableRepository.save(consumable);
     }
 }
