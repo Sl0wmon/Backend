@@ -13,9 +13,10 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SUARecordBySecDto {
-    private String SUAId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
+    @JsonProperty("SUAId")
+    private String SUAId;
     private double accPressure;
     private double brakePressure;
     private double speed;
@@ -25,7 +26,8 @@ public class SUARecordBySecDto {
     private double intakePressure;
     private double engineLoad;
     private double mileage;
-    private double drivingTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime drivingTime;
     private double averageSpeed;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime idleTime;

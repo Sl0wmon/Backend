@@ -1,9 +1,6 @@
 package capstone1.Backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,35 +13,36 @@ import java.time.LocalTime;
 @Table(name = "SUARecordBySec")
 public class SUARecordBySec {
     @Id
+    @Column(name = "timeStamp")
     private LocalDateTime timestamp;
-    @Column(name = "SUAId", nullable = false)
+    @Column(name = "SUAId")
     private String SUAId;
-    @Column(name = "accPressure", nullable = false)
+    @Column(name = "accPressure")
     private double accPressure;
-    @Column(name = "brakePressure", nullable = false)
+    @Column(name = "brakePressure")
     private double brakePressure;
-    @Column(name = "speed", nullable = false)
+    @Column(name = "speed")
     private double speed;
-    @Column(name = "rpm", nullable = false)
+    @Column(name = "rpm")
     private double rpm;
-    @Column(name = "coolantTemperature", nullable = false)
+    @Column(name = "coolantTemperature")
     private double coolantTemperature;
-    @Column(name = "intakeTemperature", nullable = false)
+    @Column(name = "intakeTemperature")
     private double intakeTemperature;
-    @Column(name = "intakePressure", nullable = false)
+    @Column(name = "intakePressure")
     private double intakePressure;
-    @Column(name = "engineLoad", nullable = false)
+    @Column(name = "engineLoad")
     private double engineLoad;
-    @Column(name = "mileage", nullable = false)
+    @Column(name = "mileage")
     private double mileage;
-    @Column(name = "drivingTime", nullable = false)
-    private double drivingTime;
-    @Column(name = "averageSpeed", nullable = false)
+    @Column(name = "drivingTime")
+    private LocalTime drivingTime;
+    @Column(name = "averageSpeed")
     private double averageSpeed;
-    @Column(name = "idleTime", nullable = false)
+    @Column(name = "idleTime")
     private LocalTime idleTime;
-    @Column(name = "instantaneousFuelEfficieny", nullable = false)
+    @Column(name = "instantaneousFuelEfficieny")
     private double instantaneousFuelEfficiency;
-    @Column(name = "instantaneousConsumption", nullable = false)
+    @Column(name = "instantaneousConsumption")
     private double instantaneousConsumption;
 }

@@ -41,6 +41,6 @@ public class SUARecordController {
     @PostMapping("/api/SUARecord/timestamp/list")
     public Response<?> getSUARecordsBySUAId(@RequestBody SUARecordBySecDto suaRecordBySecDto) {
         return new Response<>("true", "해당 SUAId의 급발진 기록 조회 완료",
-                suaRecordService.getSUARecordsBySUAId(suaRecordBySecDto.getSUAId()));
+                suaRecordService.getSUARecordsBySecBySUAId(suaRecordBySecDto.getSUAId()));
     }
 }

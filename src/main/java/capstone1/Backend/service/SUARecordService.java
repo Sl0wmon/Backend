@@ -50,7 +50,7 @@ public class SUARecordService {
         return suaRecordBySecRepository.save(suaRecordBySec);
     }
 
-    public List<SUARecordBySec> getSUARecordsBySUAId(String SUAId) {
+    public List<SUARecordBySec> getSUARecordsBySecBySUAId(String SUAId) {
         return suaRecordBySecRepository.findBySUAId(SUAId);
     }
 }

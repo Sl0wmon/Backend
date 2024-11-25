@@ -17,7 +17,6 @@ public class GuideService {
     }
 
     public List<Guide> getAllGuideWithCarType(String carType) {
-        // TODO: carType, All에 맞는 쿼리문 작성 및 출력
         return guideRepository.findAllByCarType(carType);
     }
 
