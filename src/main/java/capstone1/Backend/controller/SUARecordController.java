@@ -19,18 +19,28 @@ public class SUARecordController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/SUARecord/add")
     public Response<?> addSUARecord(@RequestBody SUARecordDto suaRecordDto) {
-        return new Response<>("true", "급발진 기록 추가 완료", suaRecordService.addSUARecord(suaRecordDto));
+        return new Response<>("true", "급발진 기록 추가 완료",
+                suaRecordService.addSUARecord(suaRecordDto));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/api/SUARecord/list")
     public Response<?> getSUARecordsByUserId(@RequestBody SUARecordDto suaRecordDto) {
-        return new Response<>("true", "유저의 급발진 기록 조회 완료", suaRecordService.getSUARecordsByUserId(suaRecordDto.getUserId()));
+        return new Response<>("true", "유저의 급발진 기록 조회 완료",
+                suaRecordService.getSUARecordsByUserId(suaRecordDto.getUserId()));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/api/SUARecord/addTimestamp")
+    @PostMapping("/api/SUARecord/timestamp/add")
     public Response<?> addTimestamp(@RequestBody SUARecordBySecDto suaRecordBySecDto) {
-        return new Response<>("true", "해당 SUAId에 급발진 기록 추가 완료", suaRecordService.addTimestamp(suaRecordBySecDto));
+        return new Response<>("true", "해당 SUAId에 급발진 기록 추가 완료",
+                suaRecordService.addTimestamp(suaRecordBySecDto));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/api/SUARecord/timestamp/list")
+    public Response<?> getSUARecordsBySUAId(@RequestBody SUARecordBySecDto suaRecordBySecDto) {
+        return new Response<>("true", "해당 SUAId의 급발진 기록 조회 완료",
+                suaRecordService.getSUARecordsBySUAId(suaRecordBySecDto.getSUAId()));
     }
 }

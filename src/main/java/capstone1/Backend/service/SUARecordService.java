@@ -49,4 +49,8 @@ public class SUARecordService {
         suaRecordBySec.setInstantaneousConsumption(suaRecordBySecDto.getInstantaneousConsumption());
         return suaRecordBySecRepository.save(suaRecordBySec);
     }
+
+    public List<SUARecordBySec> getSUARecordsBySUAId(String SUAId) {
+        return suaRecordBySecRepository.findBySUAId(SUAId);
+    }
 }
