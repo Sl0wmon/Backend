@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SUARecordRepository extends JpaRepository<SUARecord, String> {
     List<SUARecord> findByUserId(String userId);
+    SUARecord findBySUAId(String SUAId);
 }

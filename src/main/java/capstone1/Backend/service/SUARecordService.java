@@ -21,6 +21,15 @@ public class SUARecordService {
         suaRecord.setSUAId("SUA" + System.currentTimeMillis());
         suaRecord.setUserId(suaRecordDto.getUserId());
         suaRecord.setSUAOnTime(suaRecordDto.getSUAOnTime());
+        suaRecord.setSUAOffTime(null);
+        return suaRecordRepository.save(suaRecord);
+    }
+
+    public SUARecord quitSUARecord(SUARecordDto suaRecordDto) {
+        SUARecord suaRecord = suaRecordRepository.findBySUAId(suaRecordDto.getSUAId());
+        if (suaRecord == null) {
+            throw new IllegalArgumentException("No SUAId");
+        }
         suaRecord.setSUAOffTime(suaRecordDto.getSUAOffTime());
         return suaRecordRepository.save(suaRecord);
     }

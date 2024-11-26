@@ -24,6 +24,13 @@ public class SUARecordController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/api/SUARecord/quit")
+    public Response<?> quitSUARecord(@RequestBody SUARecordDto suaRecordDto) {
+        return new Response<>("true", "급발진 기록 종료 완료",
+                suaRecordService.quitSUARecord(suaRecordDto));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/api/SUARecord/list")
     public Response<?> getSUARecordsByUserId(@RequestBody SUARecordDto suaRecordDto) {
         return new Response<>("true", "유저의 급발진 기록 조회 완료",
