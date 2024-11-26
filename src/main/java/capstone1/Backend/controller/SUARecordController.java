@@ -15,7 +15,7 @@ public class SUARecordController {
 
     // 연결 테스트용
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/")
+    @GetMapping("/api/test")
     public String test() {
         return "Hello, World!";
     }
