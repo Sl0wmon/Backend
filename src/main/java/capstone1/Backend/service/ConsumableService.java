@@ -71,7 +71,9 @@ public class ConsumableService {
         Consumable consumable = getExistingEntity(addConsumableDto.getCarId());
         consumable.setCarId(addConsumableDto.getCarId());
         double mileage = addConsumableDto.getMileage();
-        LocalDate lastChanged = addConsumableDto.getLastChanged();
+        Integer lastChangedMonth = addConsumableDto.getLastChanged();
+        LocalDate lastChanged = null;
+        if (lastChangedMonth != null) lastChanged = LocalDate.now().minusMonths(lastChangedMonth);
         LocalDate today = LocalDate.now();
 
 
