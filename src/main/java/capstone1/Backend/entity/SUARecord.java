@@ -20,6 +20,6 @@ public class SUARecord {
     @Column(name = "SUAOnTime", nullable = false)
     private LocalDateTime SUAOnTime;
 
-    @Column(name = "SUAOffTime", nullable = false)
+    @Column(name = "SUAOffTime")
     private LocalDateTime SUAOffTime;
 }
