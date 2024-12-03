@@ -5,6 +5,7 @@ import capstone1.Backend.dto.NotificationDto;
 import capstone1.Backend.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,5 +45,10 @@ public class NotificationController {
     public Response<?> getNotificationByUserId(@RequestBody NotificationDto notificationDto) {
         return new Response<>("true", "사용자 알림 정보 조회 완료",
                 notificationService.getNotificationByUserId(notificationDto.getUserId()));
+    }
+
+    @Scheduled(cron="0 0 0 * * *")
+    public void pushNotification() {
+        notificationService.addConsumableNotification();
     }
 }

@@ -32,4 +32,6 @@ public class SUARecordBySec {
     private double intakePressure;
     @Column(name = "engineLoad")
     private double engineLoad;
+    @Column(name = "throttlePosition")
+    private double throttlePosition;
 }

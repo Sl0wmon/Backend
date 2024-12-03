@@ -24,4 +24,6 @@ public class SUARecordBySecDto {
     private double intakeTemperature;
     private double intakePressure;
     private double engineLoad;
+    @JsonProperty("throttlePos")
+    private double throttlePosition;
 }

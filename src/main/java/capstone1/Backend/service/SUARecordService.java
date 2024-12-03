@@ -50,10 +50,13 @@ public class SUARecordService {
         suaRecordBySec.setIntakeTemperature(suaRecordBySecDto.getIntakeTemperature());
         suaRecordBySec.setIntakePressure(suaRecordBySecDto.getIntakePressure());
         suaRecordBySec.setEngineLoad(suaRecordBySecDto.getEngineLoad());
+        suaRecordBySec.setThrottlePosition(suaRecordBySecDto.getThrottlePosition());
         return suaRecordBySecRepository.save(suaRecordBySec);
     }
 
     public List<SUARecordBySec> getSUARecordsBySecBySUAId(String SUAId) {
         return suaRecordBySecRepository.findBySUAId(SUAId);
     }
+
+
 }
