@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
@@ -33,16 +32,4 @@ public class SUARecordBySec {
     private double intakePressure;
     @Column(name = "engineLoad")
     private double engineLoad;
-    @Column(name = "mileage")
-    private double mileage;
-    @Column(name = "drivingTime")
-    private LocalTime drivingTime;
-    @Column(name = "averageSpeed")
-    private double averageSpeed;
-    @Column(name = "idleTime")
-    private LocalTime idleTime;
-    @Column(name = "instantaneousFuelEfficieny")
-    private double instantaneousFuelEfficiency;
-    @Column(name = "instantaneousConsumption")
-    private double instantaneousConsumption;
 }

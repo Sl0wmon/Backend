@@ -50,12 +50,6 @@ public class SUARecordService {
         suaRecordBySec.setIntakeTemperature(suaRecordBySecDto.getIntakeTemperature());
         suaRecordBySec.setIntakePressure(suaRecordBySecDto.getIntakePressure());
         suaRecordBySec.setEngineLoad(suaRecordBySecDto.getEngineLoad());
-        suaRecordBySec.setMileage(suaRecordBySecDto.getMileage());
-        suaRecordBySec.setDrivingTime(suaRecordBySecDto.getDrivingTime());
-        suaRecordBySec.setAverageSpeed(suaRecordBySecDto.getAverageSpeed());
-        suaRecordBySec.setIdleTime(suaRecordBySecDto.getIdleTime());
-        suaRecordBySec.setInstantaneousFuelEfficiency(suaRecordBySecDto.getInstantaneousFuelEfficiency());
-        suaRecordBySec.setInstantaneousConsumption(suaRecordBySecDto.getInstantaneousConsumption());
         return suaRecordBySecRepository.save(suaRecordBySec);
     }
 

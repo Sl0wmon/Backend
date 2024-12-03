@@ -25,12 +25,4 @@ public class SUARecordBySecDto {
     private double intakeTemperature;
     private double intakePressure;
     private double engineLoad;
-    private double mileage;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
-    private LocalTime drivingTime;
-    private double averageSpeed;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
-    private LocalTime idleTime;
-    private double instantaneousFuelEfficiency;
-    private double instantaneousConsumption;
 }
